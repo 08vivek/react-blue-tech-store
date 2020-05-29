@@ -27,18 +27,92 @@ class ProductProvider extends Component {
     min: 0,
     max: 0,
     company: "all",
-    shipping: false
+    shipping: false,
+    user : {},
+    isMember:true,
+    username: "",
+    email: "",
+    password: "",
+    isEmpty: true,
+    alertShow: true
   };
-  componentDidMount() {
+  async componentDidMount() {
     //from contentful items
-    client.getEntries({
-      content_type: 'reacttechstoreProducts'
-    })
-    .then(response => this.setProducts(response.items))
-    .catch(console.error);
+    try{
+      const response = await client.getEntries({content_type: 'reacttechstoreProducts'})
+      await this.setProducts(response.items);
+      
+      await this.setUser(this.getUserFromLocalStorage());
+
+    }catch(error){
+      console.log(error);
+    }
+    
 //    this.setProducts(items);
   }
 
+  setShow = (val) => {
+    this.setState({
+      alertShow: val
+    });
+  }
+  getUserFromLocalStorage = () => {
+    return localStorage.getItem("current-user")
+      ? JSON.parse(localStorage.getItem("current-user"))
+      : { username: null, token: null };
+  }
+  
+  userLogin = (curruser) => {
+    this.setUser(curruser);
+    localStorage.setItem("current-user", JSON.stringify(curruser));
+  }
+
+  updateCart = (usercart) => {
+    localStorage.removeItem("cart");
+    //localStorage.setItem("cart",JSON.stringify(usercart));
+    this.setState({
+      cart: usercart
+    },
+    ()=>{
+      this.addTotals();
+      this.syncStorage();
+    });
+  }
+
+  userLogout = () => {
+    this.setUser({token: null, username: null});
+    localStorage.removeItem("current-user");
+  }
+
+  setUser = (curruser) => {
+    this.setState({
+      user: curruser
+    });
+  }
+
+  toggleMemberForm = () => {
+    this.setState({
+      isMember: !this.state.isMember
+    });    
+    //!this.state.isMember ? this.setUsernameForm("") : this.setUsernameForm("default");
+
+  }
+  handleChangeForm = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value,
+      isEmpty : !this.state.isMember ? (!this.state.email || !this.state.password || !this.state.username) : (!this.state.email || !this.state.password)
+    });
+  }
+
+  setEmailForm = (val) => {
+    this.setState({email: val});
+  }
+  setUsernameForm = (val) => {
+    this.setState({username: val});
+  }
+  setPasswordForm = (val) => {
+    this.setState({password: val});
+  }
   //set products
 
   setProducts = products => {
@@ -299,7 +373,16 @@ class ProductProvider extends Component {
           decrement: this.decrement,
           removeItem: this.removeItem,
           clearCart: this.clearCart,
-          handleChange: this.handleChange
+          handleChange: this.handleChange,
+          handleChangeForm: this.handleChangeForm,
+          setUsernameForm: this.setUsernameForm,
+          setPasswordForm: this.setPasswordForm,
+          setEmailForm: this.setEmailForm,
+          toggleMemberForm: this.toggleMemberForm,
+          userLogin: this.userLogin,
+          userLogout: this.userLogout,
+          updateCart: this.updateCart,
+          setShow: this.setShow
         }}
       >
         {this.props.children}

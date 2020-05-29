@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../context";
+import LoginLink from "./LoginLink";
 export default function Sidebar() {
   return (
     <ProductConsumer>
       {value => {
-        const { links, sidebarOpen, handleSidebar } = value;
+        const { links, sidebarOpen, handleSidebar} = value;
         return (
           <SideWrapper show={sidebarOpen}>
             <ul>
@@ -23,6 +24,7 @@ export default function Sidebar() {
                   </li>
                 );
               })}
+              <LoginLink />
             </ul>
           </SideWrapper>
         );

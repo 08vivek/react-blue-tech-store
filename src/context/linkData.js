@@ -23,5 +23,10 @@ export const linkData = [
     id: 5,
     text: "cart",
     path: "/cart"
-  }
+  },
+  // {
+  //   id: 6,
+  //   text: "login",
+  //   path: "/login"
+  // }
 ];

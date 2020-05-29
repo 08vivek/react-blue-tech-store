@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import SideCart from "./components/SideCart";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
 class App extends Component {
   render() {
     return (
@@ -26,6 +27,7 @@ class App extends Component {
         <SideCart />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/products" exact component={Products} />
