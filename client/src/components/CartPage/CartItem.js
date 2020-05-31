@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  FaTrash,
-  FaChevronCircleUp,
-  FaChevronCircleDown
-} from "react-icons/fa";
-export default function CartItem({
-  cartItem,
-  increment,
-  decrement,
-  removeItem
-}) {
+import {FaTrash,FaChevronCircleUp,FaChevronCircleDown} from "react-icons/fa";
+export default function CartItem({cartItem,increment,decrement,removeItem}) {
+  
   const { id, title, price, count, total, image } = cartItem;
-
   return (
     <div className="row mt-5 mt-lg-0 text-capitalize text-center align-items-center">
       {/* image */}

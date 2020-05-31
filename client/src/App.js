@@ -7,8 +7,8 @@ import About from "./pages/AboutPage";
 import Products from "./pages/ProductsPage";
 import Contact from "./pages/ContactPage";
 import SingleProduct from "./pages/SingleProductPage";
-import Cart from "./pages/CartPage.js";
-import Default from "./pages/Default.js";
+import Cart from "./pages/CartPage";
+import Default from "./pages/Default";
 
 import { Route, Switch } from "react-router-dom";
 

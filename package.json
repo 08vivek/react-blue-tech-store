@@ -1,45 +1,35 @@
 {
   "name": "react-blue-e-commerce",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
-    "concurrently": "^5.2.0",
-    "contentful": "^7.14.4",
-    "nodemon": "^2.0.4",
-    "react": "^16.13.0",
-    "react-bootstrap": "^1.0.1",
-    "react-dom": "^16.13.0",
-    "react-icons": "^3.10.0",
-    "react-paypal-express-checkout": "^1.0.5",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.0",
-    "styled-components": "^5.0.1"
-  },
+  "version": "1.0.0",
+  "description": "Tech store using MERN stack",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client-install":"npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client":"npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
-  "proxy":"http://localhost:5000",
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/08vivek/react-blue-tech-store.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/08vivek/react-blue-tech-store/issues"
+  },
+  "homepage": "https://github.com/08vivek/react-blue-tech-store#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

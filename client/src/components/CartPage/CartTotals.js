@@ -1,6 +1,5 @@
 import React from "react";
 import { ProductConsumer } from "../../context";
-//import PayPalBtn from "./PayPalBtn";
 export default function CartTotals() {
   return (
     <div className="container">
