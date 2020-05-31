@@ -3,6 +3,7 @@ import { linkData } from "./linkData";
 import { socialData } from "./socialData";
 //import { items } from "./productData";
 import {client} from "./contentful";
+
 const ProductContext = React.createContext();
 //Provider
 //Consumer
@@ -193,6 +194,7 @@ class ProductProvider extends Component {
   // sync storage
   syncStorage = () => {
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
+
   };
   //add to cart
   addToCart = id => {
@@ -229,6 +231,14 @@ class ProductProvider extends Component {
       loading: false
     });
   };
+
+  //remove single product from storage when loging out
+  removeSetSingleProduct = () => {
+    localStorage.removeItem("singleProduct");
+    this.setState({
+      singleProduct:{}
+    });
+  }
 
   // handle sidebar
   handleSidebar = () => {
@@ -382,7 +392,8 @@ class ProductProvider extends Component {
           userLogin: this.userLogin,
           userLogout: this.userLogout,
           updateCart: this.updateCart,
-          setShow: this.setShow
+          setShow: this.setShow,
+          removeSetSingleProduct: this.removeSetSingleProduct
         }}
       >
         {this.props.children}

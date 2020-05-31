@@ -55,7 +55,7 @@ export default function Login(){
                 <Card.Header >{isMember ? "Sign in" : "Register"}</Card.Header>
                 <Form > 
                   {/* single input */}
-                  <Form.Group controlId="formBasicEmail">
+                  <Form.Group>
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" id="email" name="email" onChange={handleChangeForm} value={email} placeholder="Enter email" />
                     <Form.Text className="text-muted">
@@ -65,14 +65,14 @@ export default function Login(){
                   
                   {/* end of single input */}
                   {/* single input */}
-                  <Form.Group controlId="formBasicPassword">
+                  <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" name="password" id="password" value={password} onChange={handleChangeForm} placeholder="Password" />
                   </Form.Group>
                   {/* end of single input */}
                   {/* single input */}
                   {!isMember && (
-                  <Form.Group controlId="formBasicUsername">
+                  <Form.Group >
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" name="username" id="username" value={username} placeholder="username" onChange={handleChangeForm}/>
                   </Form.Group>

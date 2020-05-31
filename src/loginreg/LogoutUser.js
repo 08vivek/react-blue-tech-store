@@ -1,10 +1,13 @@
+import UpdateCart from "./UpdateCart";
 const axios = require('axios');
-
-async function LogoutUser({token}) {
+async function LogoutUser({cart,token}) {
+  try{
     const options = {headers : {'Authorization' : `Bearer ${token}`}};
-    const response = await axios.post('http://localhost:5000/users/logout',{},options)
-      .catch(error => console.log(error));
-    console.log(response);
+    await UpdateCart({cart,token});
+    await axios.post('/users/logout',{},options)
+  }catch(e){
+    console.log(e);
+  };
   } 
 
  export default LogoutUser;
