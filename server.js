@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/user');
-
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -19,6 +19,14 @@ connection.once('open', () => {
 });
 
 app.use(userRouter);
+
+//Serve static assets if in production
+if(process.env.NODE_ENV === 'production'){
+    //Set static folder
+    app.use('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+    });
+}
 
 app.listen(port,() => { 
     console.log(`server running on port: ${port}`);
